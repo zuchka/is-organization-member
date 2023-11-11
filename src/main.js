@@ -23,7 +23,7 @@ async function main() {
   console.log(data)
   const isMember = orgs.some(({ login }) => login === organization);
   
-  core.setOutput("result", isMember ? "true" : "false");
+  core.setOutput("result", data);
 }
 
 function checkStatus(result) {
