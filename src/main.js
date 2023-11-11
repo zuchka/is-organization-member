@@ -15,7 +15,7 @@ const octokit = new github.getOctokit(token);
 main();
 
 async function main() {
-  const { data: orgs } = checkStatus(
+  const data = checkStatus(
     await octokit.rest.orgs.checkMembershipForUser({
       organization,
       username,
@@ -27,7 +27,7 @@ async function main() {
 }
 
 function checkStatus(result) {
-  if (result.status >= 200 && result.status < 300) {
+  if (result.status >= 200 && result.status < 400) {
     return result;
   }
 
