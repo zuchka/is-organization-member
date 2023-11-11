@@ -16,11 +16,13 @@ main();
 
 async function main() {
   const { data: orgs } = checkStatus(
-    await octokit.rest.orgs.listForUser({ username, per_page: 100 })
-  );
-
+    await octokit.rest.orgs.checkMembershipForUser({
+      organization,
+      username,
+    }));
+  console.log(data)
   const isMember = orgs.some(({ login }) => login === organization);
-
+  
   core.setOutput("result", isMember ? "true" : "false");
 }
 
